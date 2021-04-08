@@ -10,17 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
+import os
+import json
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIG_SECRET_FILE = os.path.join(BASE_DIR, 'secret_key.json')
 
+config_secret = json.loads(open(CONFIG_SECRET_FILE).read())
+
+def get_secret(setting,secret=config_secret):
+    try:
+        return config_secret[setting]
+    except KeyError:
+        error_msg = "Set the {0} environment variable".format(setting)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$kxrb^c(g4n1_jr+&4gz&gm8b%c-=j5z-8qz!s2+ykp!sv5&4r'
+SECRET_KEY = get_secret("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
