@@ -35,7 +35,8 @@ SECRET_KEY = get_secret("DJANGO_SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-	".ap-northeast-2.compute.amazonaws.com"
+	".ap-northeast-2.compute.amazonaws.com",
+    "127.0.0.1"
 ]
 
 
@@ -88,7 +89,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
