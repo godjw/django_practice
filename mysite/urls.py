@@ -18,6 +18,6 @@ from django.urls import path
 from main import views as main_views
 
 urlpatterns = [
-	path('', main_views.index, name="index"),
+	path('', main_views.ReactAppView.as_view()),
     path('admin/', admin.site.urls),
 ]
