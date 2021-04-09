@@ -12,3 +12,5 @@ myvenv/
 venv/
 #secretkey
 secret_key.json
+#static root
+.static_root/
