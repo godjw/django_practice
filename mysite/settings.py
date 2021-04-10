@@ -19,11 +19,13 @@ CONFIG_SECRET_FILE = os.path.join(BASE_DIR, 'secret_key.json')
 
 config_secret = json.loads(open(CONFIG_SECRET_FILE).read())
 
-def get_secret(setting,secret=config_secret):
+
+def get_secret(setting, secret=config_secret):
     try:
         return config_secret[setting]
     except KeyError:
         error_msg = "Set the {0} environment variable".format(setting)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -35,15 +37,14 @@ SECRET_KEY = get_secret("DJANGO_SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-	".ap-northeast-2.compute.amazonaws.com",
+    ".ap-northeast-2.compute.amazonaws.com",
     "127.0.0.1"
 ]
-
 
 # Application definition
 
 INSTALLED_APPS = [
-	'main',
+    'main',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'CVGM_APP.apps.CvgmAppConfig'
 ]
 
 MIDDLEWARE = [
@@ -64,7 +66,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#이거 필요 없음?
+# 이거 필요 없음?
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
@@ -92,17 +94,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'cvgm',
+        'PASSWORD': 'cvgm123',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -122,7 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -135,7 +138,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

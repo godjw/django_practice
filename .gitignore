@@ -15,4 +15,4 @@ venv/
 secret_key.json
 #static root
 .static_root/
-.DS_Store
+.idea/
