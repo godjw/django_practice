@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'CVGM_APP.apps.CvgmAppConfig'
 ]
 
 MIDDLEWARE = [

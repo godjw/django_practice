@@ -21,7 +21,6 @@ from main import views as main_views
 
 urlpatterns = [
                 path('', main_views.ReactAppView.as_view()),
-                path('CVGM_APP/', include('CVGM_APP.urls')),
                 path('admin/', admin.site.urls),
                 path('MAP/', include('main.urls')),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
