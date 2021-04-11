@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse
 from django.conf import settings
+from .models import checkpoint
 
 import os
 
@@ -22,5 +23,10 @@ class ReactAppView(View):
             return HttpResponse(status=501, )
 
 def show_map(request):
-    context={'Key': GOOGLE_MAP_API_KEY}
+    checkpoints = checkpoint.objects.filter(checkpoint_id='a')
+    context = {'Key': GOOGLE_MAP_API_KEY}
+    for temp in checkpoints:
+        context["lat"] = temp.latitude
+        context["lng"] = temp.longitude
+
     return render(request,'mapping.html',context)

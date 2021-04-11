@@ -15,16 +15,16 @@ class employee(models.Model):
 
 class checkpoint(models.Model):
     checkpoint_id = models.CharField(primary_key=True, max_length=30)
-    gps_x = models.FloatField(default = 0.0)
-    gps_y = models.FloatField(default = 0.0)
+    latitude = models.FloatField(default = 0.0)
+    longitude = models.FloatField(default = 0.0)
     approval_status = models.BooleanField()
 
 
 class time_gps(models.Model):
     time_gps_id = models.CharField(primary_key=True, max_length=30)
     time = models.DateTimeField()
-    gps_x = models.FloatField(default = 0.0)
-    gps_y = models.FloatField(default = 0.0)
+    latitude = models.FloatField(default = 0.0)
+    longitude = models.FloatField(default = 0.0)
     checkpoint_flag = models.BooleanField(default = False)
     checkpoint_id = models.ForeignKey(checkpoint, on_delete=models.PROTECT)
 
