@@ -23,7 +23,7 @@ class ReactAppView(View):
             return HttpResponse(status=501, )
 
 def show_map(request):
-    checkpoints = checkpoint.objects.filter(checkpoint_id='a')
+    checkpoints = checkpoint.objects.filter(checkpoint_id='map_center')
     context = {'Key': GOOGLE_MAP_API_KEY}
     for temp in checkpoints:
         context["lat"] = temp.latitude
