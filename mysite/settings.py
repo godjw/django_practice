@@ -32,6 +32,7 @@ def get_secret(setting, secret=config_secret):
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_secret("DJANGO_SECRET_KEY")
+GOOGLE_MAP_API_KEY= 'AIzaSyC_Eqd7UygQxCrBQuQVI66t79Du73mT52E'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -52,7 +53,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'CVGM_APP.apps.CvgmAppConfig'
 ]
 
 MIDDLEWARE = [
