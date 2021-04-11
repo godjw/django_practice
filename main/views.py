@@ -1,7 +1,11 @@
+from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse
 from django.conf import settings
+
 import os
+
+from mysite.settings import GOOGLE_MAP_API_KEY
 
 
 class ReactAppView(View):
@@ -16,3 +20,7 @@ class ReactAppView(View):
 
         except:
             return HttpResponse(status=501, )
+
+def show_map(request):
+    context={'Key': GOOGLE_MAP_API_KEY}
+    return render(request,'mapping.html',context)
